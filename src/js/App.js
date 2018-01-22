@@ -1,69 +1,60 @@
 import React, { Component } from 'react';
-import createAbsoluteGrid from './lib/AbsoluteGrid';
-import Widget from './Widget';
 import data from '../mock/mock-data.js';
-import * as _ from 'lodash';
+import ReactGridLayout from 'react-grid-layout';
+import GridItem from 'react-grid-layout';
+import Widget from './Widget';
 
 //STYLES
+import '../styles/drag.css';
 import '../styles/App.css';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: data.screens
+      widgets: data.widgets,
+      columns: 3
     }
+    this.buildLayout = this.buildLayout.bind(this);
   }
-  onDragMove(source, target) {
-    console.log(source, target)
+  componentDidMount() {
+    this.buildLayout();
   }
-  onMove(source, target){
-    console.log(this.state.items[0])
-    // source = _.find(this.state.item, {key: parseInt(source, 10)});
-    // target = _.find(this.state.item, {key: parseInt(target, 10)});
-
-    // const targetSort = target.sort;
-
-    //CAREFUL, For maximum performance we must maintain the array's order, but change sort
-    // const reorderedItems = this.state.items.map(function(item){
-    //   //Decrement sorts between positions when target is greater
-    //   if(item.key === source.key) {
-    //     return {
-    //       ...item,
-    //       sort: targetSort
-    //     }
-    //   } else if(target.sort > source.sort && (item.sort <= target.sort && item.sort > source.sort)){
-    //     return {
-    //       ...item,
-    //       sort: item.sort - 1
-    //     };
-    //   //Increment sorts between positions when source is greater
-    //   } else if (item.sort >= target.sort && item.sort < source.sort){
-    //     return {
-    //       ...item,
-    //       sort: item.sort + 1
-    //     };
-    //   }
-    //   return item;
-    // });
-    this.setState({
-      items: []
+  buildLayout() {
+    const itemCount = 0;
+    let row = 0;
+    let col = 0;
+    const layout = this.state.widgets.map((widget, index) => {
+      col++;
+      if(index % this.state.columns === 0) {
+        row++;
+        col = 0;
+      }
+      return {
+        i: index.toString(),
+        x: col,
+        y: row,
+        w: 1,
+        h: 1,
+        bg: widget.url
+      }
     });
-  }
-  onMoveDebounced() {
-    _.debounce(this.onMove.bind(this), 40);
+    this.setState({
+      layout: layout
+    });
+    console.log(layout)
   }
   render() {
-    const AbsoluteGrid = createAbsoluteGrid(Widget);
-    return (
-      <AbsoluteGrid items={this.state.items} 
-                    dragEnabled={true} 
-                    responsive={true} 
-                    onMoveDebounced={this.onMoveDebounced.bind(this)} 
-                    verticalMargin={42}
-                    itemWidth={230}
-                    itemHeight={409} />
-    )
+    if(this.state.layout) {
+      return (
+        <ReactGridLayout verticalCompact={true} className="layout" layout={this.state.layout} cols={this.state.columns} rowHeight={400} width={1200}>
+          {this.state.widgets.map((widget, index) => <Widget key={index.toString()} bg={widget}>WTF</Widget> )}
+        </ReactGridLayout>
+      )
+    }else{
+      return <div>Loading...</div>
+    }
+    
   }
 }
 

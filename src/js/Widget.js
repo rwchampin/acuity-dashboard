@@ -1,24 +1,30 @@
 import React, { Component } from 'react';
 
 class Widget extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			key: props.item.key,
-			url: props.item.url,
-			name: props.item.name,
-			sort: props.item.sort
-		}
-	}
+  click() {
+      alert()
+    }
   render() {
-  	const itemStyle = {
-      display: 'block',
-      width: '100%',
+    const bgStyle = {
+      backgroundImage: `url('${this.props.bg.url}')`,
       height: '100%',
-      backgroundImage: `url('${this.props.item.url}')`
-    };
+      width: '100%',
+      position: 'relative'
+    }
     return (
-      <div style={itemStyle} className="widget"><span className="name">{this.props.item.name}</span></div>
+      <div 
+        className="widget" 
+        key="0" 
+        style={this.props.style} 
+        onMouseDown={this.props.onMouseDown}
+        onMouseUp={this.props.onMouseUp}
+        onTouchStart={this.props.onTouchStart}
+        onTouchEnd={this.props.onTouchEnd}
+        >
+          <div style={bgStyle}>
+            <div onClick={this.click.bind(this)}>CLICK</div>
+          </div>
+        </div>
     )
   }
 }

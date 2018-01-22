@@ -1,9 +1,9 @@
 module.exports = {
-  screens: [
-    {'url': 'http://invisionapp.com/subsystems/do_ui_kit/assets/img/screens/original-1x/screen-1-1-login.jpg', 'name': 'login', 'sort': 1, 'key': 1},
-    {'url': 'http://invisionapp.com/subsystems/do_ui_kit/assets/img/screens/original-1x/screen-1-2-sign-up.jpg', 'name': 'signup', 'sort': 2, 'key': 2},
-    {'url': 'http://invisionapp.com/subsystems/do_ui_kit/assets/img/screens/original-1x/screen-1-3-walkthrough.jpg', 'name': 'walkthrough', 'sort': 3, 'key': 3},
-    {'url': 'http://invisionapp.com/subsystems/do_ui_kit/assets/img/screens/original-1x/screen-1-4-home.jpg', 'name': 'home', 'sort': 4, 'key': 4},
+  widgets: [
+    {'url': 'http://invisionapp.com/subsystems/do_ui_kit/assets/img/screens/original-1x/screen-1-1-login.jpg', 'name': 'login', 'sort': 1, 'key': 1, 'width': 'small'},
+    {'url': 'http://invisionapp.com/subsystems/do_ui_kit/assets/img/screens/original-1x/screen-1-2-sign-up.jpg', 'name': 'signup', 'sort': 2, 'key': 2, 'width': 'medium'},
+    {'url': 'http://invisionapp.com/subsystems/do_ui_kit/assets/img/screens/original-1x/screen-1-3-walkthrough.jpg', 'name': 'walkthrough', 'sort': 3, 'key': 3, 'width': 'small'},
+    {'url': 'http://invisionapp.com/subsystems/do_ui_kit/assets/img/screens/original-1x/screen-1-4-home.jpg', 'name': 'home', 'sort': 4, 'key': 4, 'width': 'large'},
     {'url': 'http://invisionapp.com/subsystems/do_ui_kit/assets/img/screens/original-1x/screen-1-5-calendar.jpg', 'name': 'calendar', 'sort': 5, 'key': 5},
     {'url': 'http://invisionapp.com/subsystems/do_ui_kit/assets/img/screens/original-1x/screen-1-6-overview.jpg', 'name': 'overview', 'sort': 6, 'key': 6},
     {'url': 'http://invisionapp.com/subsystems/do_ui_kit/assets/img/screens/original-1x/screen-1-7-groups.jpg', 'name': 'groups', 'sort': 7, 'key': 7},
