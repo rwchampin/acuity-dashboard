@@ -1,19 +1,21 @@
 import React, { Component } from 'react';
 import data from '../mock/mock-data.js';
-import ReactGridLayout from 'react-grid-layout';
-import GridItem from 'react-grid-layout';
+import ReactGridLayout, {WidthProvider} from 'react-grid-layout';
 import Widget from './Widget';
 
-//STYLES
+//STYLES & ICONS
 import '../styles/drag.css';
 import '../styles/App.css';
+
+const DecoratedReactGridLayout = WidthProvider(ReactGridLayout);
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       widgets: data.widgets,
-      columns: 3
+      columns: 3,
+      rowHeight: 500
     }
     this.buildLayout = this.buildLayout.bind(this);
   }
@@ -42,14 +44,15 @@ class App extends Component {
     this.setState({
       layout: layout
     });
-    console.log(layout)
   }
   render() {
     if(this.state.layout) {
       return (
-        <ReactGridLayout verticalCompact={true} className="layout" layout={this.state.layout} cols={this.state.columns} rowHeight={400} width={1200}>
-          {this.state.widgets.map((widget, index) => <Widget key={index.toString()} bg={widget}>WTF</Widget> )}
-        </ReactGridLayout>
+        <DecoratedReactGridLayout className="layout" layout={this.state.layout} cols={this.state.columns} rowHeight={this.state.rowHeight} width={1200}>
+          {this.state.widgets.map((widget, index) => {
+            return <div key={index.toString()}><Widget bg={widget.url} /></div> 
+          })}
+        </DecoratedReactGridLayout>
       )
     }else{
       return <div>Loading...</div>
