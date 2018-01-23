@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import FaCog from 'react-icons/lib/fa/cog';
+import FaTimes from 'react-icons/lib/fa/close';
 
 class Widget extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			menuOpen: false
+			menuOpen: false,
+      id: this.props.id
 		}
 	}
 	menuClick() {
@@ -13,6 +15,9 @@ class Widget extends Component {
 			menuOpen: !this.state.menuOpen
 		})
 	}
+  closeClick() {
+    this.props.removeWidget(this);
+  }
   render() {
     const widgetContentStyle = {
       backgroundImage: `url('${this.props.bg}')`,
@@ -27,13 +32,14 @@ class Widget extends Component {
     return (
       <div 
         className="widget" 
-        key={0}
+        key={this.props.key}
         style={this.props.style} 
         onMouseDown={this.props.onMouseDown}
         onMouseUp={this.props.onMouseUp}
         onTouchStart={this.props.onTouchStart}
         onTouchEnd={this.props.onTouchEnd}
         >
+          <FaTimes className="widget-remove" onClick={this.closeClick.bind(this)} />
         	<FaCog className="widget-menu-trigger" onClick={this.menuClick.bind(this)} />
         	<div className="widget-content" style={widgetContentStyle}></div>
           <div className="widget-menu" style={widgetMenuContentStyle}>MENU CONTENT</div>

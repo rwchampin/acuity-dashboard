@@ -39,6 +39,18 @@ html, body, #root, .app {
 	z-index: 10;
   cursor: pointer;
 }
+.widget-remove {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  -webkit-transform: scale(0);
+  transition: all .3s cubic-bezier(.55,0,.1,1);
+  -webkit-transition: all .3s cubic-bezier(.55,0,.1,1);
+  z-index: 10;
+}
+.widget:hover .widget-remove {
+    -webkit-transform: scale(1) !important;
+}
 .widget-content {
   background-repeat: no-repeat;
   background-size: cover;
